@@ -1,0 +1,219 @@
+/* THIS IS CODE FOR NATURAL CUBIC SPLINE CURVE IN WHICH FOR A GIVEN
+   SET OF POINTS WE CAN DRAW A CLOSED SPLINE CURVE OR A CURVE WITH
+   SECOND ORDER DERIVATIVE AT ENDS IS ZERO.
+   
+   INPUT:-   SET OF POINTS. (num points, points, 1/0 (closed/open)
+   OUTPUT:-  NATURAL CUBIC SPLINE CURVE PASSING THROUGH THE POINTS.   
+
+   Written: M.B. Joshi, November 1998
+*/
+   
+#include<iostream.h>
+#include<math.h>
+
+        void mul(int n,float a[400][400],float b[400],float c[400]);
+        void gussele(int n,float a[400][400],float b[400],float x[400]);
+
+main()
+        {
+                float xd[400],yd[400],fx[400],fy[400];
+                float x[400],y[400],matleft[400][400],matright[400][400];
+                float px[11][400],py[11][400];
+                int m,n,txy;
+                float fu1,fu2,fu3,fu4;
+        //      cout<<"\n enter no of points";
+                cin>>m;
+                n=m-1;
+                for(int i=0;i<m;i++)
+                {
+        //      cout<<"\nenter x,y co_ordinate ";
+                cin >> x[i]>>y[i];
+                }
+                for(int i=0;i<400;i++)
+                {
+                fx[i]=0;
+                fy[i]=0;
+                yd[i]=0;
+                xd[i]=0;
+                for(int j=0;j<400;j++)
+                {
+                        matright[i][j]=0;
+                        matleft[i][j]=0;
+                }
+                }
+                for(int i=1;i<=n-1;i++)
+                {
+                        matleft[i][i-1]=2;      
+                        matleft[i][i]=8;
+                        matleft[i][i+1]=2;
+                        matright[i][i-1]=-6;
+                        matright[i][i]=0;
+                        matright[i][i+1]=6;
+                }
+/*              cout <<"\n for closed curve enter 1, for curve with second derivative =0
+                at the ends enter 0";*/
+                int type;
+                cin >> type;
+                if(type==1)
+                {
+                matleft[0][0]=8;
+                matleft[0][1]=2;
+                matleft[0][n]=2;
+                matleft[n][0]=2;
+                matleft[n][n-1]=2;
+                matleft[n][n]=8;
+                matright[0][1]=6;
+                matright[0][n]=-6;
+                matright[n][0]=6; 
+                matright[n][n-1]=-6;
+                }
+                else
+                {
+                matleft[0][0]=4;
+                matleft[0][1]=2;
+                matleft[n][n-1]=2;
+                matleft[n][n]=4;
+                matright[0][0]=-6;
+                matright[0][1]=6;
+                matright[0][n]=2;
+                matright[n][0]=2;
+                matright[n][n-1]=-6;
+                matright[n][n]=6;
+                }
+                mul(n,matright,x,fx);
+                mul(n,matright,y,fy);
+                gussele(n,matleft,fx,xd);
+                gussele(n,matleft,fy,yd);
+                float u=0;
+                for(int j=1;j<=n;j++)
+                {
+                for(int i=0;i<=10;i++)
+                        {
+                        fu1=2*u*u*u-3*u*u+1;    
+                        fu2=-1*2*u*u*u+3*u*u;
+                        fu3=u*u*u-2*u*u+u;      
+                        fu4=u*u*u-u*u;
+                        px[i][j]=fu1*x[j-1]+fu2*x[j]+fu3*xd[j-1]+fu4*xd[j];
+                        py[i][j]=fu1*y[j-1]+fu2*y[j]+fu3*yd[j-1]+fu4*yd[j];
+                        u=u+0.1;
+                        }
+                        u=0;
+                }
+                u=0;
+                if(type==1)
+                {
+                  for(int i=0;i<=10;i++)
+                        {
+                          fu1=2*u*u*u-3*u*u+1;  
+                          fu2=-1*2*u*u*u+3*u*u;
+                          fu3=u*u*u-2*u*u+u;    
+                          fu4=u*u*u-u*u;
+                          px[i][n+1]=fu1*x[n]+fu2*x[0]+fu3*xd[n]+fu4*xd[0];
+                          py[i][n+1]=fu1*y[n]+fu2*y[0]+fu3*yd[n]+fu4*yd[0];
+                          u=u+0.1;
+                        }
+                         u=0;
+                }
+                for(int j=1;j<=n;j++)
+                        {       
+                                for(int i=0;i<=10;i++)
+                                        {
+                                                cout<<"\n"<<"\t"<<px[i][j];
+                                                cout<<"\t"<<py[i][j];
+                                        }
+                        }
+                if(type==1)
+                {
+                for(int i=0;i<=10;i++)
+                        {
+                        cout<<"\n"<<"\t"<<px[i][n+1];
+                        cout<<"\t"<<py[i][n+1];
+                        }
+                }
+        }
+//      THIS FUNCTION GAUSS ELIMINATION METHD TO SOLVE SIMULTANEOUS EQUATION     
+void gussele(int n,float a[400][400],float b[400],float x[400])
+    {
+     n=n+1;
+     int i,j,k;
+     float c;
+     for(i=0;i<n;i++)
+      {
+       for(j=i+1;j<n;j++)
+         {
+         if(a[i][i]<a[j][i])
+          {
+          for(k=0;k<n;k++)
+            {
+             c=a[i][k];
+             a[i][k]=a[j][k];
+             a[j][k]=c;
+            }
+           c=b[i];
+           b[i]=b[j];
+           b[j]=c;
+          }
+      }
+    }  
+ 
+
+  for(i=0;i<n;i++)
+   {
+    for(j=i+1;j<n;j++)
+     {
+      b[j]=b[j]-a[j][i]*(b[i]/a[i][i]);
+       for(k=n-1;k>=0;k--)
+       {
+        a[j][k]=a[j][k]-a[j][i]*(a[i][k]/a[i][i]);
+       }
+     }
+    } 
+/*  cout<<"\n the new a matrix";
+  cout<<"\n";
+     for(i=0;i<n;i++)
+     {
+      for (j=0;j<n;j++)
+   cout<<"\t"<<a[i][j];
+   cout<<"\n";
+     }
+  cout<<"\n the new b matrix";
+  cout<<"\n";
+     for(i=0;i<n;i++)
+     {
+    cout<<b[i];
+    cout<<"\n";
+     } */
+
+    x[n-1]=b[n-1]/a[n-1][n-1];
+     for(i=n-2;i>=0;i--)
+      {
+       x[i]=b[i];
+       for(j=n-1;j>i;j--)
+        {
+         x[i]=x[i]-a[i][j]*x[j];
+        }
+        x[i]=x[i]/a[i][i];
+      }
+ /*   cout<<"\n the solution of the matrix";
+    cout<<"\n";
+     for(i=0;i<n;i++)
+     {
+     cout<<x[i];
+     cout<<"\n";
+      }*/
+ }
+ 
+ //THIS FUNCTION MULTIPLY TWO N x N MATRIX
+        void mul(int n,float a[400][400],float b[400],float c[400] )
+                {
+                        for(int j=0;j<=n;j++)
+                        {
+                                float sum=0;
+                                for(int k=0;k<=n;k++)
+                                {
+                                sum=sum+a[j][k]*b[k];
+                                }
+                        c[j]=sum;
+                        }
+                }
+

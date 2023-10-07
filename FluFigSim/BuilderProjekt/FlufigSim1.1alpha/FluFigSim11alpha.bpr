@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.05.03"/>
+    <PROJECT value="FluFigSim11alpha.exe"/>
+    <OBJFILES value="FluFigSim11alpha.obj UForm1_11alpha.obj NatCubSplInt11alpha.obj 
+      UFrame1_11alpha.obj UForm2_11alpha.obj"/>
+    <RESFILES value="FluFigSim11alpha.res"/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) UForm1_11alpha.dfm UFrame1_11alpha.dfm UForm2_11alpha.dfm"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value="OpenGLPanel_DP.lib"/>
+    <SPARELIBS value="VCL50.lib OpenGLPanel_DP.lib"/>
+    <PACKAGES value="VCL50.bpi VCLX50.bpi bcbsmp50.bpi QRPT50.bpi VCLDB50.bpi VCLBDE50.bpi 
+      ibsmp50.bpi VCLDBX50.bpi TEEUI50.bpi TEEDB50.bpi TEE50.bpi TEEQR50.bpi 
+      VCLIB50.bpi bcbie50.bpi VCLIE50.bpi INETDB50.bpi INET50.bpi NMFAST50.bpi 
+      dclocx50.bpi bcb97axserver50.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="tlink32"/>
+    <USERDEFINES value="_DEBUG"/>
+    <SYSDEFINES value="NO_STRICT;USEPACKAGES"/>
+    <MAINSOURCE value="FluFigSim11alpha.cpp"/>
+    <INCLUDEPATH value="..\FlufigSim1.0beta;..\FluFigSim1.0alpha;..\Prototyp2;..\Prototyp1;C:\Programme\Borland\CBuilder5\OpenGLPanelDP\;H:\Diplomarbeit_zub\Kurven\natcubspl6\;H:\Diplomarbeit_zub\Kurven\natcubspl5\;H:\Diplomarbeit_zub\Kurven\natcubspl4\;C:\Programme\Borland\CBuilder5\Projects\;H:\Diplomarbeit_zub\Kurven\natcubspl3\;C:\Programme\Borland\CBuilder5\Graphikwandler\;$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="..\FlufigSim1.0beta;..\FluFigSim1.0alpha;..\Prototyp2;..\Prototyp1;C:\Programme\Borland\CBuilder5\OpenGLPanelDP\;$(BCB)\Projects\Lib;H:\Diplomarbeit_zub\Kurven\natcubspl6\;H:\Diplomarbeit_zub\Kurven\natcubspl5\;H:\Diplomarbeit_zub\Kurven\natcubspl4\;C:\Programme\Borland\CBuilder5\Projects\;H:\Diplomarbeit_zub\Kurven\natcubspl3\;C:\Programme\Borland\CBuilder5\Graphikwandler\;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-par"/>
+  </MACROS>
+  <OPTIONS>
+    <CFLAG1 value="-Od -H=$(BCB)\lib\vcl50.csm -Hc -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c 
+      -tW -tWM"/>
+    <PFLAGS value="-$YD -$W -$O- -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zd"/>
+    <LFLAGS value="-D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj $(PACKAGES) sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+  </LINKER>
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=0
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=2055
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[Excluded Packages]
+$(BCB)\Bin\bcbsmp50.bpl=Borland C++ Sample Components
+
+[HistoryLists\hlIncludePath]
+Count=2
+Item0=C:\Programme\Borland\CBuilder5\OpenGLPanelDP;;H:\Diplomarbeit_zub\Kurven\natcubspl6;H:\Diplomarbeit_zub\Kurven\natcubspl5\;H:\Diplomarbeit_zub\Kurven\natcubspl4\;C:\Programme\Borland\CBuilder5\Projects\;H:\Diplomarbeit_zub\Kurven\natcubspl3\;C:\Programme\Borland\CBuilder5\Graphikwandler\;$(BCB)\include;$(BCB)\include\vcl
+Item1=;..\natcubspl5;..\natcubspl4;C:\Programme\Borland\CBuilder5\Projects\;..\natcubspl3;C:\Programme\Borland\CBuilder5\Graphikwandler\;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=2
+Item0=C:\Programme\Borland\CBuilder5\OpenGLPanelDP;$(BCB)\Projects\Lib;;H:\Diplomarbeit_zub\Kurven\natcubspl6;H:\Diplomarbeit_zub\Kurven\natcubspl5\;H:\Diplomarbeit_zub\Kurven\natcubspl4\;C:\Programme\Borland\CBuilder5\Projects\;H:\Diplomarbeit_zub\Kurven\natcubspl3\;C:\Programme\Borland\CBuilder5\Graphikwandler\;$(BCB)\lib\obj;$(BCB)\lib
+Item1=;..\natcubspl5;..\natcubspl4;C:\Programme\Borland\CBuilder5\Projects\;..\natcubspl3;C:\Programme\Borland\CBuilder5\Graphikwandler\;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=_DEBUG
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+
+[Language]
+ActiveLang=
+ProjectLang=
+RootDir=
+  </IDEOPTIONS>
+</PROJECT>

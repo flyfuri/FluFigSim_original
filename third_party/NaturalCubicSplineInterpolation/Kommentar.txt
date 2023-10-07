@@ -1,0 +1,2 @@
+Der Algorithmus aus diesem Beispielprogramm wurde für die 
+Interpolation im FluFigSim-Editor verwendet. 
